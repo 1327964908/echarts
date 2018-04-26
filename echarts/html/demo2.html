@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div id="main" style="width:600px;height:400px;"></div>
+
+<script>
+
+var myChart = echarts.init(document.getElementById('main'));
+
+
+function fetchData(cb) {
+    // 通过 setTimeout 模拟异步加载
+    setTimeout(function () {
+        cb({
+            categories: ["香蕉","菠萝","橙子","西瓜","草莓","橘子"],
+            data: [5, 70, 36, 10, 10, 20]
+        });
+    }, 3000);
+}
+
+// 初始 option
+myChart.setOption({
+    title: {
+        text: '异步数据加载示例'
+    },
+    tooltip: {},
+    legend: {
+        data:['销量']
+    },
+    xAxis: {
+        data: []
+    },
+    yAxis: {},
+    series: [{
+        name: '销量',
+        type: 'bar',
+        data: []
+    }]
+});
+
+myChart.showLoading();
+
+fetchData(function (data) {
+    myChart.hideLoading();
+    myChart.setOption({
+        xAxis: {
+            data: data.categories
+        },
+        series: [{
+            // 根据名字对应到相应的系列
+            name: '销量',
+            data: data.data
+        }]
+    });
+});
+
+
+
+
+</script>
+</body>
+</html>

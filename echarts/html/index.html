@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script>
+            // 绘制图表。
+            var myChart = echarts.init(document.getElementById('main'));
+            myChart.setOption({
+                series: {
+                    type: 'pie',
+                    data: [
+                        {name: 'A', value: 1212},
+                        {name: 'B', value: 2323},
+                        {name: 'C', value: 1919}
+                    ]
+                }
+            });
+
+            //  myChart.setOption(option);
+        </script>
+    
+</body>
+</html>
